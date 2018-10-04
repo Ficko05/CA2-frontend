@@ -7,15 +7,29 @@
 </head>
 
 <body>
-  <div class="container">
-    <p>hey</p>
+  <div id="container">
 
-    <table id="table1">
+    <div id="menu">
+      <a href="#persons" class="menu-link" data-container="persons">A</a>
+      <a href="#pageb" class="menu-link" data-container="pageb">B</a>
+    </div>
+
+    <div id="pages">
+      <div class="page" id="persons">
+          <p>front</p>
+
+        <table id="table1">
 
 
-    </table>
+        </table>
+        <button id="buttonPersons">
 
-
+          </button>
+      </div>
+      <div class="page" id="pageb">
+          <p>b</p>
+        </div>
+    </div>
 
     <script src="bundle.js"></script>
 </body>

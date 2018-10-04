@@ -1,13 +1,31 @@
+const menu = document.getElementById('menu');
+menu.addEventListener('click', e => {
+    if (e.target.tagName == "A") {
+        const containerId = e.target.dataset.container;
+        view(containerId);
+    }
+});
+
+function view(id) {
+    const container = document.getElementById(id);
+    const all = document.getElementsByClassName("page");
+    for (let i = 0; i < all.length; i++)
+        all[i].style.display = 'none';
+
+    container.style.display = 'block';
+}
+
+
 getPersons(populatePersonsTable);
 
 function getPersons(callback) {
 
-    URL = "http://localhost:8080/CA2/api/person/complete"
+    const URL = "http://localhost:8080/CA2/api/person/complete"
 
     fetch(URL)
         .then(res => res.json())
         .then(data => callback(data))
-        //.catch()
+    //.catch()
 }
 
 function populatePersonsTable(data) {
@@ -21,7 +39,6 @@ function populatePersonsTable(data) {
         tbody.appendChild(tr);
     });
 }
-
 
 
 
