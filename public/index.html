@@ -13,20 +13,18 @@
     <div id="menu">
       <a href="#persons" class="menu-link" data-page="persons">A</a>
       <a href="#delete-person" class="menu-link" data-page="pageb">delete</a>
-      
+      <a href="#pageb" class="menu-link" data-page="create-person">B</a>
 
     </div>
 
     <div id="pages">
 
       <div class="page" id="persons">
-        <p>front</p>
 
         <table id="table1">
 
 
         </table>
-        
 
       </div>
 
@@ -36,9 +34,9 @@
 
         <form>
           <div>
-              <input type="number" step="1" min="0" id="delete-person-input-id" value="">
-              <label for="delete-person-input-id">Person ID</label>
-            </div>
+            <input type="number" step="1" min="0" id="delete-person-input-id" value="">
+            <label for="delete-person-input-id">Person ID</label>
+          </div>
           <input type="submit" id="delete-person" value="Delete">
         </form>
 
@@ -46,8 +44,26 @@
       </div>
     </div>
 
-   
-    <script src="bundle.js"></script>
+
+  </div>
+  <div class="page" id="create-person">
+
+
+    <form id="create-person-form">
+      First name: <input type="text" id="firstName" name="firstName"><br>
+      Last name: <input type="text" name="lastName"><br>
+      Phone: <input type="text" name="phone"><br>
+      Street: <input type="text" name="street"><br>
+      AdditionalStreetInfo: <input type="number" name="additionalStreetInfo"><br>
+      Zipcode: <input type="text" name="zipcode"><br>
+      <input id="submit-person" type="submit" value="Create Person">
+    </form>
+
+
+  </div>
+  </div>
+
+  <script src="bundle.js"></script>
 </body>
 
 </html>
