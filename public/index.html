@@ -3,6 +3,7 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="materialize.min.css" rel="stylesheet">
   <link href="style.css" rel="stylesheet">
 </head>
 
@@ -11,26 +12,41 @@
 
     <div id="menu">
       <a href="#persons" class="menu-link" data-page="persons">A</a>
-      <a href="#pageb" class="menu-link" data-page="pageb">B</a>
+      <a href="#delete-person" class="menu-link" data-page="pageb">delete</a>
+      
+
     </div>
 
     <div id="pages">
+
       <div class="page" id="persons">
-          <p>front</p>
+        <p>front</p>
 
         <table id="table1">
 
 
         </table>
-        <button id="buttonPersons">
+        
 
-          </button>
       </div>
-      <div class="page" id="pageb">
-          <p>b</p>
-        </div>
+
+
+
+      <div class="page" id="delete-person">
+
+        <form>
+          <div>
+              <input type="number" step="1" min="0" id="delete-person-input-id" value="">
+              <label for="delete-person-input-id">Person ID</label>
+            </div>
+          <input type="submit" id="delete-person" value="Delete">
+        </form>
+
+
+      </div>
     </div>
 
+   
     <script src="bundle.js"></script>
 </body>
 

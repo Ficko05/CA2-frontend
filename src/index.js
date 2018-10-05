@@ -36,17 +36,69 @@ function populatePersonsTable(data) {
         Object.keys(row).forEach(key => {
             let td = document.createElement("td");
             let value = row[key];
-            if(value instanceof Object){
+            if (value instanceof Object) {
                 td.innerText = value.map(phoneRow => phoneRow['number']).join(", ");
-            } else{
-                td.innerText= value;
+            } else {
+                td.innerText = value;
             }
             tr.appendChild(td);
-            
+
         });
         tbody.appendChild(tr);
     });
+
+
+    //stuff///
+
+    document.getElementById("delete-person").addEventListener('click', function (e) {
+
+       
+        const URL = "http://localhost:8080/CA2/api/person/";
+        const id = document.getElementById("delete-person-input-id").value;
+
+        // fetch(URL, makeOptions("POST", p))
+        //fetch(URL+"/114", makeOptions("PUT",p))
+        console.log(URL + id);
+        fetch(URL + id, makeOptions("DELETE"))
+
+            .then(res => handleHttpErrors(res))
+            .then(data => console.log(data))
+            .catch(err => {
+                if (err.httpError) {
+                    err.fullError.then(eJson => console.log(eJson))
+                } else {
+                    console.log("Netværks fejl")
+                }
+            })
+    })
+
+    function handleHttpErrors(res) {
+        if (res.ok) {
+            return res.json();
+        } else {
+            return Promise.reject({ httpError: res.status, fullError: res.json() })
+        }
+    }
+
+    function makeOptions(method, body) {
+        var opt = {
+            method: method,
+            headers: {
+                "Content-type": "application/json"
+            }
+        }
+        if (body) {
+            opt.body = JSON.stringify(body);
+        }
+        return opt;
+    }
+
+
+
+
 }
+
+
 
 
 
