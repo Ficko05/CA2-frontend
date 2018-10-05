@@ -60,14 +60,15 @@ Zipcode: <input type="text" name="zipcode"><br>
 <input id="submit-person" type="submit" value="Create Person">
 </form>*/
 
-document.getElementById("submit-person").addEventListener("click", function () {
+document.getElementById("submit-person").addEventListener("click", function (event) {
+    event.preventDefault();
     let personInfo = document.getElementById("create-person-form");
-    let firstName = personInfo.getAttribute("firstName");
-    let lastName = personInfo.getAttribute("lastName");
-    let phone = personInfo.getAttribute("phone");
-    let street = personInfo.getAttribute("street");
-    let additionalStreetInfo = personInfo.getAttribute("additionalStreetInfo");
-    let zipcode = personInfo.getAttribute("zipcode");
+    let firstName = personInfo.firstName.value;
+    let lastName = personInfo.lastName.value;
+    let phone = personInfo.phone.value;
+    let street = personInfo.street.value;
+    let additionalStreetInfo = personInfo.additionalStreetInfo.value;
+    let zipcode = personInfo.zipcode.value;
     function Person(firstName, lastName, phone, street, additionalStreetInfo, zipcode) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -81,7 +82,7 @@ document.getElementById("submit-person").addEventListener("click", function () {
 
 });
 function createPerson(person) {
-
+    console.log(person)
     const URL = "http://localhost:8084/CA2/api/person"
 
 
