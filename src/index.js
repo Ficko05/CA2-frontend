@@ -1,18 +1,18 @@
 const menu = document.getElementById('menu');
 menu.addEventListener('click', e => {
     if (e.target.tagName == "A") {
-        const containerId = e.target.dataset.container;
-        view(containerId);
+        const pageId = e.target.dataset.page;
+        view(pageId);
     }
 });
 
 function view(id) {
-    const container = document.getElementById(id);
-    const all = document.getElementsByClassName("page");
-    for (let i = 0; i < all.length; i++)
-        all[i].style.display = 'none';
+    const page = document.getElementById(id);
+    const allPages = document.getElementsByClassName("page");
+    for (let i = 0; i < allPages.length; i++)
+        allPages[i].style.display = 'none';
 
-    container.style.display = 'block';
+    page.style.display = 'block';
 }
 
 
@@ -33,9 +33,17 @@ function populatePersonsTable(data) {
     tbody.innerHTML = "";
     data.forEach(row => {
         let tr = document.createElement("tr");
-        let td = document.createElement("td");
-        td.innerText = row.firstName;
-        tr.appendChild(td);
+        Object.keys(row).forEach(key => {
+            let td = document.createElement("td");
+            let value = row[key];
+            if(value instanceof Object){
+                td.innerText = value.map(phoneRow => phoneRow['number']).join(", ");
+            } else{
+                td.innerText= value;
+            }
+            tr.appendChild(td);
+            
+        });
         tbody.appendChild(tr);
     });
 }
