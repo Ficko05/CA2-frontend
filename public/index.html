@@ -11,26 +11,41 @@
 
     <div id="menu">
       <a href="#persons" class="menu-link" data-page="persons">A</a>
-      <a href="#pageb" class="menu-link" data-page="pageb">B</a>
+      <a href="#pageb" class="menu-link" data-page="create-person">B</a>
     </div>
 
     <div id="pages">
       <div class="page" id="persons">
-          <p>front</p>
+
 
         <table id="table1">
 
 
         </table>
-        <button id="buttonPersons">
 
-          </button>
+
+
       </div>
-      <div class="page" id="pageb">
-          <p>b</p>
-        </div>
-    </div>
+      <div class="page" id="create-person">
 
+
+        <form id="create-person-form">
+          First name: <input type="text" name="firstName"><br>
+          Last name: <input type="text" name="lastName"><br>
+          Phone: <input type="text" name="phone"><br>
+          Street: <input type="text" name="street"><br>
+          AdditionalStreetInfo: <input type="number" name="additionalStreetInfo"><br>
+          Zipcode: <input type="text" name="zipcode"><br>
+          <input id="submit-person" type="submit" value="Create Person">
+        </form>
+
+
+
+
+
+
+      </div>
+    </div>
     <script src="bundle.js"></script>
 </body>
 
