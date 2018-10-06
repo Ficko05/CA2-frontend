@@ -25,7 +25,7 @@ function getPersons(callback) {
     fetch(URL)
         .then(res => res.json())
         .then(data => callback(data))
-    //.catch()
+        .catch(err => errorOccured(err))
 }
 
 function populatePersonsTable(data) {
@@ -50,119 +50,112 @@ function populatePersonsTable(data) {
         tbody.appendChild(tr);
     });
 
+    document.getElementById("submit-delete-person").addEventListener('click', function () {
 
-    //stuff///
-
-    document.getElementById("delete-person").addEventListener('click', function (e) {
-
-
-        const URL = "http://localhost:8080/CA2/api/person/";
+        const URL = "http://localhost:8084/CA2/api/person/";
         const id = document.getElementById("delete-person-input-id").value;
-
-        // fetch(URL, makeOptions("POST", p))
-        //fetch(URL+"/114", makeOptions("PUT",p))
-        console.log(URL + id);
+        
         fetch(URL + id, makeOptions("DELETE"))
 
             .then(res => handleHttpErrors(res))
             .then(data => console.log(data))
-            .catch(err => {
-                if (err.httpError) {
-                    err.fullError.then(eJson => console.log(eJson))
-                } else {
-                    console.log("Netværks fejl")
-                }
-            })
+            .catch(err => errorOccured(err))
     })
-
-    function handleHttpErrors(res) {
-        if (res.ok) {
-            return res.json();
-        } else {
-            return Promise.reject({ httpError: res.status, fullError: res.json() })
-        }
-    }
-
-    function makeOptions(method, body) {
-        var opt = {
-            method: method,
-            headers: {
-                "Content-type": "application/json"
-            }
-        }
-        if (body) {
-            opt.body = JSON.stringify(body);
-        }
-        return opt;
-    }
 }
 
 
 document.getElementById("submit-person").addEventListener("click", function (event) {
+
     event.preventDefault();
+
     let personInfo = document.getElementById("create-person-form");
     let firstName = personInfo.firstName.value;
     let lastName = personInfo.lastName.value;
     let phone = personInfo.phone.value;
+    let email = personInfo.email.value;
     let street = personInfo.street.value;
     let additionalStreetInfo = personInfo.additionalStreetInfo.value;
     let zipcode = personInfo.zipcode.value;
-    function Person(firstName, lastName, phone, street, additionalStreetInfo, zipcode) {
+
+    function PostPerson(firstName, lastName, email, phone, street, additionalStreetInfo, zipcode) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
         this.phone = phone;
         this.street = street;
         this.additionalStreetInfo = additionalStreetInfo;
         this.zipcode = zipcode;
     }
-    let person = new Person(firstName, lastName, phone, street, additionalStreetInfo, zipcode);
-    createPerson(person);
+
+    let postPerson = new PostPerson(firstName, lastName, email, phone, street, additionalStreetInfo, zipcode);
+    createPerson(postPerson);
 
 });
 function createPerson(person) {
-    console.log(person)
     const URL = "http://localhost:8084/CA2/api/person"
-
-
-
 
     fetch(URL, makeOptions("POST", person))
 
         .then(res => handleHttpErrors(res))
         .then(data => console.log(data))
-        .catch(err => {
-            if (err.httpError) {
-                err.fullError.then(eJson => console.log(eJson))
-            } else {
-                console.log("Netværksfejl")
-            }
-        })
-
-
-
-    function handleHttpErrors(res) {
-        if (res.ok) {
-            return res.json();
-        } else {
-            return Promise.reject({ httpError: res.status, fullError: res.json() })
-        }
-    }
-
-    function makeOptions(method, body) {
-        var opt = {
-            method: method,
-            headers: {
-                "Content-type": "application/json"
-            }
-        }
-        if (body) {
-            opt.body = JSON.stringify(body);
-        }
-        return opt;
-    }
+        .catch(err => errorOccured(err))
 }
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function makeOptions(method, body) {
+    var opt = {
+        method: method,
+        headers: {
+            "Content-type": "application/json"
+        }
+    }
+    if (body) {
+        opt.body = JSON.stringify(body);
+    }
+    return opt;
+}
+
+function handleHttpErrors(res) {
+    if (res.ok) {
+        return res.json();
+    } else {
+        return Promise.reject({ httpError: res.status, fullError: res.json() })
+    }
+}
+
+function errorOccured (err){
+    if (err.httpError) {
+        err.fullError.then(eJson => console.log(eJson))
+    } else {
+        console.log("Netværksfejl")
+    }
+}
 

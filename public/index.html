@@ -3,7 +3,6 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="materialize.min.css" rel="stylesheet">
   <link href="style.css" rel="stylesheet">
 </head>
 
@@ -11,9 +10,9 @@
   <div id="container">
 
     <div id="menu">
-      <a href="#persons" class="menu-link" data-page="persons">A</a>
-      <a href="#delete-person" class="menu-link" data-page="pageb">delete</a>
-      <a href="#pageb" class="menu-link" data-page="create-person">B</a>
+      <a href="#persons" class="menu-link" data-page="persons">Get all persons</a>
+      <a href="#delete-person" class="menu-link" data-page="delete-person">Delete Person</a>
+      <a href="#create-person" class="menu-link" data-page="create-person">Create Person</a>
 
     </div>
 
@@ -35,9 +34,9 @@
         <form>
           <div>
             <input type="number" step="1" min="0" id="delete-person-input-id" value="">
-            <label for="delete-person-input-id">Person ID</label>
+            <label id="delete-person-input-id">Person ID</label>
           </div>
-          <input type="submit" id="delete-person" value="Delete">
+          <input type="submit" id="submit-delete-person" value="Delete">
         </form>
 
 
@@ -52,10 +51,11 @@
     <form id="create-person-form">
       First name: <input type="text" id="firstName" name="firstName"><br>
       Last name: <input type="text" name="lastName"><br>
+      Email: <input type="email" name="email"><br>
       Phone: <input type="text" name="phone"><br>
       Street: <input type="text" name="street"><br>
-      AdditionalStreetInfo: <input type="number" name="additionalStreetInfo"><br>
-      Zipcode: <input type="text" name="zipcode"><br>
+      AdditionalStreetInfo: <input type="text" name="additionalStreetInfo"><br>
+      Zipcode: <input type="number" name="zipcode"><br>
       <input id="submit-person" type="submit" value="Create Person">
     </form>
 
