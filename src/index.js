@@ -54,7 +54,7 @@ function populatePersonsTable(data) {
 
         const URL = "http://localhost:8084/CA2/api/person/";
         const id = document.getElementById("delete-person-input-id").value;
-        
+
         fetch(URL + id, makeOptions("DELETE"))
 
             .then(res => handleHttpErrors(res))
@@ -155,7 +155,7 @@ function errorOccured (err){
     if (err.httpError) {
         err.fullError.then(eJson => console.log(eJson))
     } else {
-        console.log("Netværksfejl")
+        console.log("An error has occured.")
     }
 }
 
